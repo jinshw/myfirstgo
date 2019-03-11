@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>I is Chat</h1>
+    <form method="get" action="/login">
+        <button>登录</button>
+    </form>
+    <div>
+        <input type="text" name="content" id="content">
+        <button onclick="send()">发送</button>
+    </div>
+
+    <div>
+        <ul id="list"></ul>
+    </div>
+    
+    <div>
+        <button onclick="getKY()">跨区获取数据</button>
+    </div>
+
+
+<script>
+    function send() {
+        var content = $("#content").val()
+        console.log("content="+content)
+        $.ajax({
+            url:"http://localhost:8080/send",
+            data : {content:content},
+            type : 'get',
+            dataType : 'json',
+            success : function(data) {
+                console.log(data)
+            },
+            error : function(err) {
+                console.log(err)
+            }
+        });
+    }
+    
+    function getKY() {
+        $.ajax({
+            url:"http://localhost:8081/onepic/nbao/find",
+            data : {},
+            type : 'get',
+            dataType : 'json',
+            success : function(data) {
+                console.log(data)
+            },
+            error : function(err) {
+                console.log(err)
+            }
+        });
+    }
+    
+</script>
+</body>
+</html>

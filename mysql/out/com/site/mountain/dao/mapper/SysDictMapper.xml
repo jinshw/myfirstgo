@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.site.mountain.dao.test2.SysDictDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.site.mountain.entity.SysDict">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="type" property="type"/>
+		<result column="code" property="code"/>
+		<result column="value" property="value"/>
+		<result column="order_num" property="order_num"/>
+		<result column="remark" property="remark"/>
+		<result column="del_flag" property="del_flag"/>
+
+    </resultMap>
+
+    <sql id="all_column">
+		`id`,
+		`name`,
+		`type`,
+		`code`,
+		`value`,
+		`order_num`,
+		`remark`,
+		`del_flag`,
+
+    </sql>
+
+    <insert id="insertSelective">
+	INSERT INTO sys_dict (
+		`id`,
+		`name`,
+		`type`,
+		`code`,
+		`value`,
+		`order_num`,
+		`remark`,
+		`del_flag`,
+
+	) VALUES ( 
+		#{pojo.id},
+		#{pojo.name},
+		#{pojo.type},
+		#{pojo.code},
+		#{pojo.value},
+		#{pojo.order_num},
+		#{pojo.remark},
+		#{pojo.del_flag},
+	) 
+
+    </insert>
+
+    <!--有条件插入-->
+    <insert id="insert">
+        INSERT INTO sys_dict
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pojo.id!=null">`id`,</if> 
+			<if test="pojo.name!=null">`name`,</if> 
+			<if test="pojo.type!=null">`type`,</if> 
+			<if test="pojo.code!=null">`code`,</if> 
+			<if test="pojo.value!=null">`value`,</if> 
+			<if test="pojo.order_num!=null">`order_num`,</if> 
+			<if test="pojo.remark!=null">`remark`,</if> 
+			<if test="pojo.del_flag!=null">`del_flag`,</if> 
+
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pojo.id!=null">#{pojo.id},</if> 
+			<if test="pojo.name!=null">#{pojo.name},</if> 
+			<if test="pojo.type!=null">#{pojo.type},</if> 
+			<if test="pojo.code!=null">#{pojo.code},</if> 
+			<if test="pojo.value!=null">#{pojo.value},</if> 
+			<if test="pojo.order_num!=null">#{pojo.order_num},</if> 
+			<if test="pojo.remark!=null">#{pojo.remark},</if> 
+			<if test="pojo.del_flag!=null">#{pojo.del_flag},</if> 
+
+        </trim>
+    </insert>
+
+    <select id="findList" parameterType="com.site.mountain.entity.SysDict" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from sys_dict
+        <where>
+			<if test="id != null">AND name = #{id}</if>
+			<if test="name != null">AND name = #{name}</if>
+			<if test="type != null">AND name = #{type}</if>
+			<if test="code != null">AND name = #{code}</if>
+			<if test="value != null">AND name = #{value}</if>
+			<if test="order_num != null">AND name = #{order_num}</if>
+			<if test="remark != null">AND name = #{remark}</if>
+			<if test="del_flag != null">AND name = #{del_flag}</if>
+
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="com.site.mountain.entity.SysDict">
+        DELETE from sys_dict
+        <where>
+			<if test="id != null">AND name = #{id}</if>
+			<if test="name != null">AND name = #{name}</if>
+			<if test="type != null">AND name = #{type}</if>
+			<if test="code != null">AND name = #{code}</if>
+			<if test="value != null">AND name = #{value}</if>
+			<if test="order_num != null">AND name = #{order_num}</if>
+			<if test="remark != null">AND name = #{remark}</if>
+			<if test="del_flag != null">AND name = #{del_flag}</if>
+
+        </where>
+    </delete>
+
+
+</mapper>
+

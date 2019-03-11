@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="#dao#">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="#pojo#">
+#results#
+    </resultMap>
+
+    <sql id="all_column">
+#columns#
+    </sql>
+
+    <insert id="insertSelective">
+#insertSQL#
+    </insert>
+
+    <!--有条件插入-->
+    <insert id="insert">
+        INSERT INTO #table#
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+#ifcolumn#
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+#ifpojo#
+        </trim>
+    </insert>
+
+    <select id="findList" parameterType="#pojo#" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from #table#
+        <where>
+#where#
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="#pojo#">
+        DELETE from #table#
+        <where>
+#where#
+        </where>
+    </delete>
+
+
+</mapper>
+

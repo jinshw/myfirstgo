@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.site.mountain.dao.test2.SysLogDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.site.mountain.entity.SysLog">
+		<result column="id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="operation" property="operation"/>
+		<result column="method" property="method"/>
+		<result column="params" property="params"/>
+		<result column="time" property="time"/>
+		<result column="ip" property="ip"/>
+		<result column="create_date" property="create_date"/>
+
+    </resultMap>
+
+    <sql id="all_column">
+		`id`,
+		`username`,
+		`operation`,
+		`method`,
+		`params`,
+		`time`,
+		`ip`,
+		`create_date`,
+
+    </sql>
+
+    <insert id="insertSelective">
+	INSERT INTO sys_log (
+		`id`,
+		`username`,
+		`operation`,
+		`method`,
+		`params`,
+		`time`,
+		`ip`,
+		`create_date`,
+
+	) VALUES ( 
+		#{pojo.id},
+		#{pojo.username},
+		#{pojo.operation},
+		#{pojo.method},
+		#{pojo.params},
+		#{pojo.time},
+		#{pojo.ip},
+		#{pojo.create_date},
+	) 
+
+    </insert>
+
+    <!--有条件插入-->
+    <insert id="insert">
+        INSERT INTO sys_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pojo.id!=null">`id`,</if> 
+			<if test="pojo.username!=null">`username`,</if> 
+			<if test="pojo.operation!=null">`operation`,</if> 
+			<if test="pojo.method!=null">`method`,</if> 
+			<if test="pojo.params!=null">`params`,</if> 
+			<if test="pojo.time!=null">`time`,</if> 
+			<if test="pojo.ip!=null">`ip`,</if> 
+			<if test="pojo.create_date!=null">`create_date`,</if> 
+
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pojo.id!=null">#{pojo.id},</if> 
+			<if test="pojo.username!=null">#{pojo.username},</if> 
+			<if test="pojo.operation!=null">#{pojo.operation},</if> 
+			<if test="pojo.method!=null">#{pojo.method},</if> 
+			<if test="pojo.params!=null">#{pojo.params},</if> 
+			<if test="pojo.time!=null">#{pojo.time},</if> 
+			<if test="pojo.ip!=null">#{pojo.ip},</if> 
+			<if test="pojo.create_date!=null">#{pojo.create_date},</if> 
+
+        </trim>
+    </insert>
+
+    <select id="findList" parameterType="com.site.mountain.entity.SysLog" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from sys_log
+        <where>
+			<if test="id != null">AND name = #{id}</if>
+			<if test="username != null">AND name = #{username}</if>
+			<if test="operation != null">AND name = #{operation}</if>
+			<if test="method != null">AND name = #{method}</if>
+			<if test="params != null">AND name = #{params}</if>
+			<if test="time != null">AND name = #{time}</if>
+			<if test="ip != null">AND name = #{ip}</if>
+			<if test="create_date != null">AND name = #{create_date}</if>
+
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="com.site.mountain.entity.SysLog">
+        DELETE from sys_log
+        <where>
+			<if test="id != null">AND name = #{id}</if>
+			<if test="username != null">AND name = #{username}</if>
+			<if test="operation != null">AND name = #{operation}</if>
+			<if test="method != null">AND name = #{method}</if>
+			<if test="params != null">AND name = #{params}</if>
+			<if test="time != null">AND name = #{time}</if>
+			<if test="ip != null">AND name = #{ip}</if>
+			<if test="create_date != null">AND name = #{create_date}</if>
+
+        </where>
+    </delete>
+
+
+</mapper>
+
